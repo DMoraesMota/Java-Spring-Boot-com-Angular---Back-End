@@ -14,6 +14,10 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
@@ -21,6 +25,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+@Api(description = "EndPoints para criar, retornar, atualizar e deletar usuários")
 public class UserResource {
 
     @Autowired
@@ -40,7 +45,9 @@ public class UserResource {
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<UserDTO> findById(@PathVariable String id) {
+    @ApiOperation("Retorna um usuário especifico através do seu identificador")
+    public ResponseEntity<UserDTO> findById(  @ApiParam("Id de usuário não pode ser vazio")
+                                              @PathVariable String id) {
         User user = userService.findById(id);
         return ResponseEntity.ok().body(new UserDTO(user));
     }

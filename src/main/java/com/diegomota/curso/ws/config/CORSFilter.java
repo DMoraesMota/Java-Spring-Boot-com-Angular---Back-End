@@ -1,5 +1,4 @@
 package com.diegomota.curso.ws.config;
-;
 import org.springframework.stereotype.Component;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
