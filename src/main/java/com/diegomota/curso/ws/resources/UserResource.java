@@ -91,7 +91,7 @@ public class UserResource {
         String authHeader = request.getHeader("Authorization");
 
         if(authHeader != null){
-            String tokenValue = authHeader.replace("Beaer", "").trim();
+            String tokenValue = authHeader.replace("Bearer", "").trim();
             OAuth2AccessToken accessToken = tokenServices.readAccessToken(tokenValue);
             tokenStore.removeAccessToken(accessToken);
             tokenServices.revokeToken(String.valueOf(accessToken));
